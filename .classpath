@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="JAVA0802/src/|JAVA0808/src/|JAVA0822/src/|JAVA0824/src/|JAVA0831/src/|JAVA0901/src/|JAVA0905/src/|JAVA0907/src/|JAVA0801/src/|JAVA0803/src/|JAVA0809/src/|JAVA0818/src/|JAVA0823/src/|JAVA0825/src/|JAVA0829/src/|JAVA0830/src/|JAVA0902/src/|JAVA0906/src/|JAVA0908/src/|JAVA0913/src/|JAVA0915/src/|JAVA0919/src/|JAVA0901/collection/|JAVA0701/|JAVA0705/|JAVA0705/variable/|JAVA0706/operator/|JAVA0706/typecasting/|JAVA0707/|JAVA0707/if_/|JAVA0711/if_/|JAVA0711/switch_case/|JAVA0712/for_/|JAVA0712/while_/|JAVA0714/break_continue/|JAVA0714/for_/|JAVA0718/method/|JAVA0719/opp/|JAVA0721/constructor/|JAVA0725_array/|JAVA0726_array/|JAVA0728_array/|JAVA0801/method/|JAVA0802/|JAVA0802/google/co/kr/|JAVA0802/itwillbs/co/kr/|JAVA0802/kr/co/google/|JAVA0802/kr/co/itwillbs/|JAVA0802/static_/|JAVA0803/static_/|JAVA0808/inheritance/|JAVA0809/|JAVA0809/ref_casting/|JAVA0818/|JAVA0818/try_catch/|JAVA0822/access_modifier/|JAVA0822/access_modifier2/|JAVA0822/final_/|JAVA0822/try_catch/|JAVA0823/abstract_method/|JAVA0823/polymorphism/|JAVA0823/review/|JAVA0824/interface_/|JAVA0825/interface_/|JAVA0829/block/|JAVA0829/covariant/|JAVA0829/nestedClass/|JAVA0830/enum_/|JAVA0830/object/|JAVA0831/object/|JAVA0831/wrapper/" kind="src" path=""/>
+	<classpathentry kind="src" path="JAVA0801/src"/>
+	<classpathentry kind="src" path="JAVA0802/src"/>
+	<classpathentry kind="src" path="JAVA0803/src"/>
+	<classpathentry kind="src" path="JAVA0808/src"/>
+	<classpathentry kind="src" path="JAVA0809/src"/>
+	<classpathentry kind="src" path="JAVA0818/src"/>
+	<classpathentry kind="src" path="JAVA0822/src"/>
+	<classpathentry kind="src" path="JAVA0823/src"/>
+	<classpathentry kind="src" path="JAVA0824/src"/>
+	<classpathentry kind="src" path="JAVA0825/src"/>
+	<classpathentry kind="src" path="JAVA0829/src"/>
+	<classpathentry kind="src" path="JAVA0830/src"/>
+	<classpathentry kind="src" path="JAVA0831/src"/>
+	<classpathentry kind="src" path="JAVA0901/src"/>
+	<classpathentry kind="src" path="JAVA0902/src"/>
+	<classpathentry kind="src" path="JAVA0905/src"/>
+	<classpathentry kind="src" path="JAVA0906/src"/>
+	<classpathentry kind="src" path="JAVA0907/src"/>
+	<classpathentry kind="src" path="JAVA0908/src"/>
+	<classpathentry kind="src" path="JAVA0913/src"/>
+	<classpathentry kind="src" path="JAVA0915/src"/>
+	<classpathentry kind="src" path="JAVA0919/src"/>
+	<classpathentry kind="src" path="JAVA0901/collection"/>
+	<classpathentry kind="src" path="JAVA0701"/>
+	<classpathentry excluding="variable/" kind="src" path="JAVA0705"/>
+	<classpathentry kind="src" path="JAVA0705/variable"/>
+	<classpathentry kind="src" path="JAVA0706/operator"/>
+	<classpathentry kind="src" path="JAVA0706/typecasting"/>
+	<classpathentry excluding="if_/" kind="src" path="JAVA0707"/>
+	<classpathentry kind="src" path="JAVA0707/if_"/>
+	<classpathentry kind="src" path="JAVA0711/if_"/>
+	<classpathentry kind="src" path="JAVA0711/switch_case"/>
+	<classpathentry kind="src" path="JAVA0712/for_"/>
+	<classpathentry kind="src" path="JAVA0712/while_"/>
+	<classpathentry kind="src" path="JAVA0714/break_continue"/>
+	<classpathentry kind="src" path="JAVA0714/for_"/>
+	<classpathentry kind="src" path="JAVA0718/method"/>
+	<classpathentry kind="src" path="JAVA0719/opp"/>
+	<classpathentry kind="src" path="JAVA0721/constructor"/>
+	<classpathentry kind="src" path="JAVA0725_array"/>
+	<classpathentry kind="src" path="JAVA0726_array"/>
+	<classpathentry kind="src" path="JAVA0728_array"/>
+	<classpathentry kind="src" path="JAVA0801/method"/>
+	<classpathentry excluding="src/|google/co/kr/|itwillbs/co/kr/|kr/co/google/|kr/co/itwillbs/|static_/" kind="src" path="JAVA0802"/>
+	<classpathentry kind="src" path="JAVA0802/google/co/kr"/>
+	<classpathentry kind="src" path="JAVA0802/itwillbs/co/kr"/>
+	<classpathentry kind="src" path="JAVA0802/kr/co/google"/>
+	<classpathentry kind="src" path="JAVA0802/kr/co/itwillbs"/>
+	<classpathentry kind="src" path="JAVA0802/static_"/>
+	<classpathentry kind="src" path="JAVA0803/static_"/>
+	<classpathentry kind="src" path="JAVA0808/inheritance"/>
+	<classpathentry excluding="src/|ref_casting/" kind="src" path="JAVA0809"/>
+	<classpathentry kind="src" path="JAVA0809/ref_casting"/>
+	<classpathentry excluding="src/|try_catch/" kind="src" path="JAVA0818"/>
+	<classpathentry kind="src" path="JAVA0818/try_catch"/>
+	<classpathentry kind="src" path="JAVA0822/access_modifier"/>
+	<classpathentry kind="src" path="JAVA0822/access_modifier2"/>
+	<classpathentry kind="src" path="JAVA0822/final_"/>
+	<classpathentry kind="src" path="JAVA0822/try_catch"/>
+	<classpathentry kind="src" path="JAVA0823/abstract_method"/>
+	<classpathentry kind="src" path="JAVA0823/polymorphism"/>
+	<classpathentry kind="src" path="JAVA0823/review"/>
+	<classpathentry kind="src" path="JAVA0824/interface_"/>
+	<classpathentry kind="src" path="JAVA0825/interface_"/>
+	<classpathentry kind="src" path="JAVA0829/block"/>
+	<classpathentry kind="src" path="JAVA0829/covariant"/>
+	<classpathentry kind="src" path="JAVA0829/nestedClass"/>
+	<classpathentry kind="src" path="JAVA0830/enum_"/>
+	<classpathentry kind="src" path="JAVA0830/object"/>
+	<classpathentry kind="src" path="JAVA0831/object"/>
+	<classpathentry kind="src" path="JAVA0831/wrapper"/>
+	<classpathentry kind="output" path="JAVA0801/bin"/>
+</classpath>
