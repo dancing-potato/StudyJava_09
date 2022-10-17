@@ -1,15 +1,27 @@
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import org.apache.ibatis.cache.decorators.SerializedCache.CustomObjectInputStream;
 
 public class CustomerGUI {
 
@@ -84,6 +96,8 @@ public class CustomerGUI {
 		
 		pIdx.add(new JLabel("번 호"));
 		tfIdx = new JTextField(10);
+		// 번호 입력 불가능하도록 잠금
+		tfIdx.setEditable(false);
 		pIdx.add(tfIdx);
 		
 		// 이름(NAME) 패널
@@ -147,8 +161,160 @@ public class CustomerGUI {
 		pSouth.add(btnInsert);
 		pSouth.add(btnDelete);
 		// ------------------------------------
+		
+		// 버튼 이벤트 리스너 연결
+		btnSelect.addActionListener(e -> select());
+		btnInsert.addActionListener(e -> insert());
+		btnDelete.addActionListener(e -> delete());
+		
+		KeyAdapter adapter = new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) select(); 
+			}
+		};
+		
+		sName.addKeyListener(adapter);
+		sAge.addKeyListener(adapter);
+		sJumin.addKeyListener(adapter);
+		
+		
+		
 		f.setVisible(true);
 	}
+	
+	public void select() {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("NAME", sName.getText());
+		param.put("AGE", sAge.getText());
+		param.put("JUMIN", sJumin.getText());
+		
+		CustomerDAO dao = new CustomerDAO();
+		Vector<Vector> data = dao.select(param);
+		
+		// table 객체에 DefaultTableModel 객체를 가져오기
+		DefaultTableModel dtm = (DefaultTableModel)table.getModel();
+		
+		// Model 객체의 행번호를 0으로 초기화 (표시된 회원 목록 초기화)
+		dtm.setRowCount(0);
+		
+		// Vector 객체(data) 만큼 반복을 통해 저장된 Vector 객체(rowData)를 가져온 후
+		// DefaultTableModel 객체의 addRow() 메서드로 데이터 추가
+		for(Vector rowData : data) {
+			dtm.addRow(rowData);
+		}
+		
+	
+	}
+	
+	public boolean vailCheck() {
+		
+		if(tfName.getText().equals("")) {
+			JOptionPane.showMessageDialog(
+					f, "이름 입력 필수!", "입력 오류", JOptionPane.WARNING_MESSAGE);
+			tfName.requestFocus(); // 입력창 커서 요청
+			return false;
+		} else if(tfAge.getText().equals("")) {
+			JOptionPane.showMessageDialog(
+					f, "나이 입력 필수!", "입력 오류", JOptionPane.WARNING_MESSAGE);
+			tfAge.requestFocus(); // 입력창 커서 요청
+			return false;
+		} else if(tfEmail.getText().equals("")) {
+			JOptionPane.showMessageDialog(
+					f, "E-Mail 입력 필수!", "입력 오류", JOptionPane.WARNING_MESSAGE);
+			tfEmail.requestFocus(); // 입력창 커서 요청
+			return false;
+		} else if(tfJumin.getText().equals("")) {
+			JOptionPane.showMessageDialog(
+					f, "주민번호 입력 필수!", "입력 오류", JOptionPane.WARNING_MESSAGE);
+			tfJumin.requestFocus(); // 입력창 커서 요청
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public boolean vaildAge() {
+		String pattern = "^[0-9]{1,3}$"; // 숫자 1~3자리 체크하는 패턴
+		if(!Pattern.matches(pattern, tfAge.getText())) {
+			JOptionPane.showMessageDialog(
+					f, " 나이는 숫자 3자리 이하 입력 필수!", "입력 오류", JOptionPane.WARNING_MESSAGE);
+			tfAge.requestFocus(); // 입력창 커서 요청
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public void insert() {
+		// TODO 유효성검사
+		if(!vailCheck()) return;	// 필수입력사항 체크 (null check)
+		if(!vaildAge()) return;		// 나이(숫자 1 ~ 3 체크)
+		// Email 형식체크
+		// 주민번호 형식체크
+		
+		
+		String name = tfName.getText();
+		String age = tfAge.getText();
+		String eMail = tfEmail.getText();
+		String jumin = tfJumin.getText();
+		
+		// 객체에 입력 데이터 저장
+		CustomerDTO dto = new CustomerDTO("", name, age, eMail, jumin);
+		
+		// CustomerDAO 객체 생성 후 insert() 메서드에 DTO 객체를 전달하여 회원 추가 작업 요청
+		CustomerDAO dao = new CustomerDAO();
+		boolean isSuccess = dao.insert(dto);
+		
+		if(isSuccess) {
+			JOptionPane.showMessageDialog(
+					f, "회원 추가 성공", "성공", JOptionPane.INFORMATION_MESSAGE);
+			select();
+		} else {
+			JOptionPane.showMessageDialog(
+					f, "회원 추가 실패", "실패", JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+	
+	public void delete() {
+		// InputDialog를 사용하여 삭제할 회원번호(idx)를 입력받아
+		// CustomerDAO의 delete() 메서드에 전달하여 회원 삭제 작업 요청
+		// => 삭제 결과를 boolean 타입으로 리턴받아
+		//    삭제 성공/실패를 MessageDialog로 출력
+		String idx = JOptionPane.showInputDialog(f, "삭제할 회원 번호를 입력하세요.");
+		
+		// 취소, x => null
+		if(idx == null) return;
+		
+		// 입력 번호가 없을 경우(널스트링 또는 길이 0) 오류 메세지 출력
+		if(idx.length() == 0) {
+			JOptionPane.showMessageDialog(
+					f, "번호 입력 필수!", "입력 오류", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		
+		// IDX 값이 1부터 증가되므로 0데이터도 오류 메세지 출력
+		if(idx.equals("0")) {
+			JOptionPane.showMessageDialog(
+					f, "번호 1이상 입력!", "입력 오류", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		
+		// 입력 데이터가 있을 경우 CustomerDAO 객체의 delete() 메서드에 번호 전달
+		CustomerDAO dao = new CustomerDAO();
+		boolean isSuccess = dao.delete(idx);
+		
+		if(isSuccess) {
+			JOptionPane.showMessageDialog(
+					f, "회원 삭제 성공", "성공", JOptionPane.INFORMATION_MESSAGE);
+			select();
+		} else {
+			JOptionPane.showMessageDialog(
+					f, "회원 삭제 실패", "실패", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 		new CustomerGUI();
